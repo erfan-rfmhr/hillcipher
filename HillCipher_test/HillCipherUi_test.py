@@ -15,8 +15,8 @@ class EncryptionApp(QWidget):
 
         self.plaintext_textedit = QTextEdit()
         self.encrypted_textedit = QTextEdit()
-        self.key_textedit = QTextEdit()
-        self.key_textedit.hide()  # Hide the key_textedit initially
+        self.decrypt_textedit = QTextEdit()
+        self.decrypt_textedit.hide()  
 
         self.encrypt_button = QPushButton("Encrypt", self)
         self.decrypt_button = QPushButton("Decrypt", self)
@@ -26,12 +26,12 @@ class EncryptionApp(QWidget):
     def setup_ui(self):
         plaintext_label = QLabel("Plaintext:")
         encrypted_label = QLabel("Encrypted:")
-        key_label = QLabel("Key Matrix:")
+        decrypt_label = QLabel("Decrypted:")
 
         # Apply styles to the labels
         plaintext_label.setStyleSheet("font-weight: bold;")
         encrypted_label.setStyleSheet("font-weight: bold;")
-        key_label.setStyleSheet("font-weight: bold;")
+        decrypt_label.setStyleSheet("font-weight: bold;")
 
         layout = QVBoxLayout()
         form_layout = QHBoxLayout()
@@ -41,8 +41,8 @@ class EncryptionApp(QWidget):
         form_layout.addWidget(self.plaintext_textedit)
         form_layout.addWidget(encrypted_label)
         form_layout.addWidget(self.encrypted_textedit)
-        form_layout.addWidget(key_label)
-        form_layout.addWidget(self.key_textedit)
+        form_layout.addWidget(decrypt_label)
+        form_layout.addWidget(self.decrypt_textedit)
 
         button_layout.addWidget(self.encrypt_button)
         button_layout.addWidget(self.decrypt_button)
@@ -119,8 +119,8 @@ class EncryptionApp(QWidget):
             decrypted_message += " " + self.matrix_to_letter(decrypted_matrix)[0:length]
 
         self.plaintext_textedit.setPlainText(decrypted_message.strip())
-        self.key_textedit.show()  # Show the key_textedit after decryption
-        self.key_textedit.setPlainText(decrypted_message.strip())
+        self.decrypt_textedit.show()  # Show the key_textedit after decryption
+        self.decrypt_textedit.setPlainText(decrypted_message.strip())
 
 
 if __name__ == '__main__':
