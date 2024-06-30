@@ -5,10 +5,9 @@ def GosJordan_diag(matrix):
     copy_matrix = deepcopy(matrix)
 
     row , col = len(matrix) , len(matrix[0])
-    print(copy_matrix[0][0])
     
     for i in range(min(row,col)):
-        main_row = i
+        # main_row = i
 
         # for j in range(i+1 , row):
 
@@ -25,13 +24,11 @@ def GosJordan_diag(matrix):
         
         main_element = copy_matrix[i][i]
         diag *= main_element
-        print(main_element)
 
         if main_element != 0 :
 
             for j in range((len(copy_matrix[i]))):
-                copy_matrix[i][j] //= float(main_element)
-                # copy_matrix[i][j] /= float(main_element)
+                copy_matrix[i][j] /= float(main_element)
 
         for j in range(row):
 
@@ -42,14 +39,17 @@ def GosJordan_diag(matrix):
                 for k in range(len(copy_matrix[j])):
                     copy_matrix[j][k] = copy_matrix[j][k] - (factor * copy_matrix[i][k])
       
-    # print(copy_matrix , diag)
     for i in range(row):
         for j in range(col):
             if i==j : 
                 diag*= copy_matrix[i][j]
     return diag , copy_matrix
 
-# matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 matrix = [[-1,3,2], [3,-2,1], [5,-1,-3]]
+matrix = [[1,2,3], [0,1,2], [-1,2,1]]
+matrix = [ [5,4,2,1], [2,3,1,-2], [-5,-7,-3 ,9] , [1,-2,-1,4] ]
+matrix = [[1,5], [6,2]]
+
 diag = GosJordan_diag(matrix)
 print(diag)
