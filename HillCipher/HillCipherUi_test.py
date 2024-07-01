@@ -1,5 +1,6 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButton, QTextEdit
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButton, QTextEdit 
+from PyQt5.QtGui import QFont
 from key_create import key_matrix_creator
 import numpy as np
 
@@ -13,6 +14,19 @@ class EncryptionApp(QWidget):
         self.inputtext_textedit = QTextEdit()
         self.encrypted_textedit = QTextEdit()
         self.decrypt_textedit = QTextEdit()
+
+        self.inputtext_textedit.setFixedSize(150,150)
+        self.encrypted_textedit.setFixedSize(150,150)
+        self.decrypt_textedit.setFixedSize(150,150)
+
+        self.inputtext_textedit.setFont(QFont('Arial', 15))
+        self.encrypted_textedit.setFont(QFont('Arial', 15))
+        self.decrypt_textedit.setFont(QFont('Arial', 15))
+
+        self.inputtext_textedit.setStyleSheet("border: 2px solid black;")
+        self.encrypted_textedit.setStyleSheet("border: 2px solid black;")
+        self.decrypt_textedit.setStyleSheet("border: 2px solid black;")
+
         self.decrypt_textedit.hide()  
 
         self.encrypt_button = QPushButton("Encrypt", self)
@@ -24,9 +38,13 @@ class EncryptionApp(QWidget):
         input_label = QLabel("inputtext:")
         encrypted_label = QLabel("Encrypted:")
         decrypt_label = QLabel("Decrypted:")
+        
+        input_label.setFont(QFont('Arial', 15))
+        encrypted_label.setFont(QFont('Arial', 15))
+        decrypt_label.setFont(QFont('Arial', 15))
 
-        # Apply styles to the labels
-        input_label.setStyleSheet("font-weight: bold;")
+
+        input_label.setStyleSheet("font-weight: bold " )
         encrypted_label.setStyleSheet("font-weight: bold;")
         decrypt_label.setStyleSheet("font-weight: bold;")
 
@@ -47,16 +65,15 @@ class EncryptionApp(QWidget):
         layout.addLayout(form_layout)
         layout.addLayout(button_layout)
 
-        # Set margins and spacing for the main layout
+
         layout.setContentsMargins(20, 20, 20, 20)
-        layout.setSpacing(10)
+        layout.setSpacing(30)
 
         self.setLayout(layout)
 
         self.encrypt_button.clicked.connect(self.encrypt)
         self.decrypt_button.clicked.connect(self.decrypt)
 
-        # Set the background color
         self.setStyleSheet("background-color: gray;")
 
     def matrix_to_letter(self, matrix):
@@ -68,6 +85,7 @@ class EncryptionApp(QWidget):
 
     def encrypt(self):
         inputtext = self.inputtext_textedit.toPlainText()
+
         # key = np.array([[1, 2], [1, 3]])
         key = np.array([[9, 8], [10, 9]])
 
@@ -124,15 +142,14 @@ class EncryptionApp(QWidget):
             if len(decrypted_message) > len(self.inputtext_textedit.toPlainText()) and decrypted_message[-1] == 'a':
                 decrypted_message = decrypted_message[ : -1]
 
-        # self.inputtext_textedit.setPlainText(decrypted_message.strip())
-        self.decrypt_textedit.show()  # Show the key_textedit after decryption
+
+        self.decrypt_textedit.show() 
         self.decrypt_textedit.setPlainText(decrypted_message.strip())
 
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
 
-    # Set the application style
     app.setStyle("Fusion")
 
     window = EncryptionApp()
