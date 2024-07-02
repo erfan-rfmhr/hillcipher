@@ -33,21 +33,7 @@ def GosJordan_diag(matrix):
     row , col = len(matrix) , len(matrix[0])
     
     for i in range(min(row,col)):
-        # main_row = i
 
-        # for j in range(i+1 , row):
-
-        #     if abs(copy_matrix[j][i])> abs(copy_matrix[main_row][i]):
-        #         main_row = j
-
-# --------------------
-
-        # if main_row != i:
-
-        #     temp = copy_matrix[i] 
-        #     copy_matrix[i] = copy_matrix[main_row]
-        #     copy_matrix[main_row] = temp
-        
         main_element = copy_matrix[i][i]
         diag *= main_element
 
