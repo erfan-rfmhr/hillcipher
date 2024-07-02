@@ -28,13 +28,13 @@ def GosJordan_diag(matrix):
         if main_element != 0 :
 
             for j in range((len(copy_matrix[i]))):
-                copy_matrix[i][j] /= float(main_element)
+                copy_matrix[i][j] //= float(main_element)
 
         for j in range(row):
 
             if j != i:
 
-                factor = copy_matrix[j][i] / copy_matrix[i][i] if copy_matrix[i][i] != 0 else 0
+                factor = copy_matrix[j][i] // copy_matrix[i][i] if copy_matrix[i][i] != 0 else 0
 
                 for k in range(len(copy_matrix[j])):
                     copy_matrix[j][k] = copy_matrix[j][k] - (factor * copy_matrix[i][k])
@@ -44,12 +44,3 @@ def GosJordan_diag(matrix):
             if i==j : 
                 diag*= copy_matrix[i][j]
     return diag , copy_matrix
-
-matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-matrix = [[-1,3,2], [3,-2,1], [5,-1,-3]]
-matrix = [[1,2,3], [0,1,2], [-1,2,1]]
-matrix = [ [5,4,2,1], [2,3,1,-2], [-5,-7,-3 ,9] , [1,-2,-1,4] ]
-matrix = [[1,5], [6,2]]
-
-diag = GosJordan_diag(matrix)
-print(diag)

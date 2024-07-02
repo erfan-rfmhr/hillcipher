@@ -21,10 +21,3 @@ def laplas_diag_method(matrix):
     
     return det
 
-matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-matrix = [[-1,3,2], [3,-2,1], [5,-1,-3]]
-matrix = [[1,2,3], [0,1,2], [-1,2,1]]
-matrix = [ [5,4,2,1], [2,3,1,-2], [-5,-7,-3 ,9] , [1,-2,-1,4] ]
-matrix = [[1,5], [6,2]]
-
-print(laplas_diag_method(matrix))
